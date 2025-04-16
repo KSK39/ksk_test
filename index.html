@@ -3,9 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Моя первая страница</title>
+    <style>
+        /* Стили для слайдера */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        .slideshow-container img {
+            display: none;
+            width: 100%;
+            height: auto;
+        }
+        
+        .active-slide {
+            display: block;
+        }
+        
+        a.slide-link {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Привет, мир!</h1>
-    <p>Это моя первая веб-страница.</p>
+    <!-- Блок h1 заменяем контейнером для слайдера -->
+    <div class="slider">
+        <div class="slideshow-container">
+            <!-- Каждое изображение является ссылкой -->
+            <a href="https://example.com/link1" target="_blank" class="slide-link"><img src="images/image1.jpg" alt="Image 1"></a>
+            <a href="https://example.com/link2" target="_blank" class="slide-link"><img src="images/image2.jpg" alt="Image 2"></a>
+            <a href="https://example.com/link3" target="_blank" class="slide-link"><img src="images/image3.jpg" alt="Image 3"></a>
+        </div>
+    </div>
+    
+    <script>
+        // Скрипт для автоматического переключения слайдов каждые 3 секунды
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slideshow-container > a');
+
+        function showSlides() {
+            for(let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active-slide');
+            }
+            slides[currentSlide].classList.add('active-slide');
+            
+            currentSlide++;
+            if(currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+        }
+
+        setInterval(showSlides, 3000); // Менять слайды каждые 3 секунды
+    </script>
 </body>
 </html>
